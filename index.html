@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+</head>
+<body>
+    <h1>Strona internetowa z licznikiem wejść</h1>
+    <p>Liczba odwiedzin: <span id="counter">0</span></p>
+    
+    <!-- Miejsce na wstawienie gifa -->
+    <div id="gif-container"></div>
+
+    <script>
+        // Funkcja do zwiększania licznika
+        function increaseCounter() {
+            // Sprawdzamy, czy zapisana jest liczba wejść w localStorage
+            if (localStorage.getItem('visitCount')) {
+                // Jeśli tak, odczytujemy ją i zwiększamy o 1
+                let count = parseInt(localStorage.getItem('visitCount'));
+                count++;
+                localStorage.setItem('visitCount', count);
+                document.getElementById('counter').innerText = count;
+            } else {
+                // Jeśli nie, ustawiamy liczbę wejść na 1 i zapisujemy w localStorage
+                localStorage.setItem('visitCount', 1);
+                document.getElementById('counter').innerText = 1;
+            }
+        }
+
+        // Funkcja do wstawiania gifa
+        function displayGif() {
+            const gifContainer = document.getElementById('gif-container');
+            // Wstaw tutaj adres URL do gifa
+            const gifUrl = 'https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif';
+            const gifElement = document.createElement('img');
+            gifElement.src = gifUrl;
+            gifContainer.appendChild(gifElement);
+        }
+
+        // Wywołujemy funkcje przy załadowaniu strony
+        increaseCounter();
+        displayGif();
+    </script>
+</body>
+</html>
