@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferie</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+	    background-color: #f0f0f0;
+        }
+        #gif-container {
+            margin-top: 20px; /* Dodaj odstęp od nagłówka */
+        }
+    </style>
+</head>
+<body>
+    <h1>Ferie zimowe</h1>
+    <p>Liczba odwiedzin: <span id="counter">0</span></p>
+    
+    <div id="gif-container"></div>
+
+    <script>
+        // Funkcja do zwiększania licznika
+        function increaseCounter() {
+            // Sprawdzamy, czy zapisana jest liczba wejść w localStorage
+            if (localStorage.getItem('visitCount')) {
+                // Jeśli tak, odczytujemy ją i zwiększamy o 1
+                let count = parseInt(localStorage.getItem('visitCount'));
+                count++;
+                localStorage.setItem('visitCount', count);
+                document.getElementById('counter').innerText = count;
+            } else {
+                // Jeśli nie, ustawiamy liczbę wejść na 1 i zapisujemy w localStorage
+                localStorage.setItem('visitCount', 1);
+                document.getElementById('counter').innerText = 1;
+            }
+        }
+
+        // Funkcja do wstawiania gifa
+        function displayGif() {
+            const gifContainer = document.getElementById('gif-container');
+            // Wstaw tutaj adres URL do gifa
+            const gifUrl = 'https://1.bp.blogspot.com/-IYCKfh_5yt4/UQL7CI3x3TI/AAAAAAAASqo/6dO59c_dkvE/s1600/4b919e580014be204ee12379.gif';
+            const gifElement = document.createElement('img');
+            gifElement.src = gifUrl;
+            gifContainer.appendChild(gifElement);
+        }
+
+        // Wywołujemy funkcje przy załadowaniu strony
+        increaseCounter();
+        displayGif();
+    </script>
+</body>
+</html>
